@@ -1,0 +1,60 @@
+<div class="box">
+<% unless @user %>
+  <h2>All tweets</h2>
+<%else%>
+  <% if @current_is_user_page %>
+    <h2>My Tweets</h2>
+  <%else%>
+    <h2>Tweets for <%=h @user.login%></h2>
+  <%end%>
+<%end%>
+</div>
+
+<%if @current_is_user_page %>
+  <%=render :partial => 'tweets/new', :object => @tweet %>
+<%end%>
+<div id="tweets">
+<% @tweets.each do |tweet| %>
+<% if tweet %>
+  <div class="tweet box" id="tweet<%=tweet.id%>">
+  <div class="message">
+    <%= tweet.comment %>
+  </div>
+  <div class="meta">
+    <div class="date span-8">Posted by <%= link_to h(tweet.user.login), user_tweets_path(tweet.user) %> at
+    <%=h tweet.updated_at.strftime('%I:%M %p on %b %d' ) %></div>
+    <div class="share span-1 end"><%=link_to "share", tweet_path(tweet)%></div>
+    <div class="follow span-1 end"><%=create_follow_link tweet.user, current_user %></div>
+  </div>
+</div>
+<% end %>
+<% end %>
+</div>
+<script type="text/javascript">
+  
+  Event.observe(window, 'load', function(){
+   var new_tweet = $('#tweet_comment');
+   if(new_tweet){
+       tweets.add.track_count();
+       new_tweet.observe('keypress', tweets.add.track_count);
+       new_tweet.observe('keydown', tweets.add.track_count);
+       new_tweet.observe('keyup', tweets.add.track_count);
+       new_tweet.observe('blur', tweets.add.track_count);
+       new_tweet.observe('focus', tweets.add.track_count);
+   }
+});
+
+var tweets = {};
+tweets.add = {};
+tweets.add.track_count = function(){
+    var MAX = 160;
+    var length = $('#tweet_comment').value.length;
+    var amount_left = MAX - length;
+    $('#count').update(amount_left);
+    if(amount_left < 0 || length == 0){
+        $('#submit_tweet').disable();
+    } else {
+        $('#submit_tweet').enable();
+    }
+}
+</script>

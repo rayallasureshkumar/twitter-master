@@ -1,0 +1,13 @@
+<div class="new-tweet box">
+<%= form_for @tweet, :remote => true, :url => { :controller => "tweets", :action => "create" } do |f| %>
+
+  <p>
+    <%= f.label :comment, "What are you doing right now?" %><br />
+    <%= f.text_area :comment %>
+  </p>
+  <div class="span-11 end">
+    <div class="span-9"><%= f.submit 'Update', :id => 'submit_tweet' %></div>
+    <div id="count" class="span-1 end">160</div>
+  </div>
+<% end %>
+</div>

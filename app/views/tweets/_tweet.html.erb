@@ -1,0 +1,12 @@
+<div class="tweet box" id="tweet<%=@tweet.id%>">
+  <div class="message">
+    <%= tweet.comment %>
+  </div>
+  <div class="meta">
+    <div class="date span-8">Posted by <%= link_to h(@tweet.user.login), user_tweets_path(@tweet.user) %> at
+    <%=h @tweet.updated_at.strftime('%I:%M %p on %b %d' ) %></div>
+    <div class="share span-1 end"><%=link_to "share", tweet_path(@tweet)%></div>
+    <div class="follow span-1 end"><%=create_follow_link @tweet.user, current_user %></div>
+    
+  </div>
+</div>
