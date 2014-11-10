@@ -3,7 +3,7 @@
 
   <p>
     <%= f.label :comment, "What are you doing right now?" %><br />
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment, :onkeyup => 'return countChar(this);' %>
   </p>
   <div class="span-11 end">
     <div class="span-9"><%= f.submit 'Update', :id => 'submit_tweet' %></div>

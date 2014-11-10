@@ -16,7 +16,7 @@
 <div id="tweets">
 <% @tweets.each do |tweet| %>
 <% if tweet %>
-  <div class="tweet box" id="tweet<%=tweet.id%>">
+  <div class="tweet box">
   <div class="message">
     <%= tweet.comment %>
   </div>
@@ -30,31 +30,21 @@
 <% end %>
 <% end %>
 </div>
-<script type="text/javascript">
-  
-  Event.observe(window, 'load', function(){
-   var new_tweet = $('#tweet_comment');
-   if(new_tweet){
-       tweets.add.track_count();
-       new_tweet.observe('keypress', tweets.add.track_count);
-       new_tweet.observe('keydown', tweets.add.track_count);
-       new_tweet.observe('keyup', tweets.add.track_count);
-       new_tweet.observe('blur', tweets.add.track_count);
-       new_tweet.observe('focus', tweets.add.track_count);
-   }
-});
+<%= javascript_include_tag 'jquery.min.js' %>
+<%= javascript_include_tag 'jquery.validate.min.js' %>
 
-var tweets = {};
-tweets.add = {};
-tweets.add.track_count = function(){
+<script type="text/javascript">
+  $('#submit_tweet').attr('disabled', true);
+  function countChar(val) {
+    var length = val.value.length;
     var MAX = 160;
-    var length = $('#tweet_comment').value.length;
     var amount_left = MAX - length;
-    $('#count').update(amount_left);
+    $('#count').text(amount_left);
     if(amount_left < 0 || length == 0){
-        $('#submit_tweet').disable();
-    } else {
-        $('#submit_tweet').enable();
+      $('#submit_tweet').attr('disabled', true); 
+        
+      } else {
+      $('#submit_tweet').attr('disabled', false); 
     }
-}
+  };
 </script>
