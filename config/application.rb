@@ -40,7 +40,7 @@ module Twitter
     config.filter_parameters += [:password]
     config.filter_parameters += [:password, :password_confirmation]
     # Enable escaping HTML in JSON.
-    config.active_support.escape_html_entities_in_json = true
+    # config.active_support.escape_html_entities_in_json = true
 
     config.assets.initialize_on_precompile = false
 

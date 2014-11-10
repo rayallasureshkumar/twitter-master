@@ -22,6 +22,10 @@ end
 
 gem 'jquery-rails'
 
+group :development do
+   gem 'webrick', '~> 1.3.1'
+end
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
