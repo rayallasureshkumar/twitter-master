@@ -1,6 +1,1 @@
-page.insert_html :top, :tweets, :partial => 'tweets/tweet', :object => @tweet
-page[:new_tweet].reset
-page[:count].update "160"
-page.visual_effect :BlindDown, "tweet#{@tweet.id}"
-page.visual_effect :highlight, "tweet#{@tweet.id}", :duration => 3,
-  :startcolor => '#f36e24', :endcolor => '#f8f7ed'
+$('#tweets').append('<%= escape_javascript(render :partial => @tweet) %>');

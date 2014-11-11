@@ -14,6 +14,8 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       format.html 
+      format.js
+      format.json { render json: @tweets }
     end
   end
 
@@ -22,6 +24,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       format.html 
+      format.js
     end
   end
 
@@ -30,6 +33,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       format.html 
+      format.js
     end
   end
 
@@ -41,11 +45,9 @@ class TweetsController < ApplicationController
       if @tweet.save
         flash[:notice] = 'Tweet was successfully created.'
         format.html { redirect_to user_tweets_path(current_user) }
-        format.xml  { render :xml => @tweet, :status => :created, :location => @tweet }
         format.js
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @tweet.errors, :status => :unprocessable_entity }
       end
     end
   end

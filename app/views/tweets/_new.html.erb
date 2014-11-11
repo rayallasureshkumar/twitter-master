@@ -6,7 +6,7 @@
     <%= f.text_area :comment, :onkeyup => 'return countChar(this);' %>
   </p>
   <div class="span-11 end">
-    <div class="span-9"><%= f.submit 'Update', :id => 'submit_tweet' %></div>
+    <div class="span-9"><%= f.submit 'Update', :id => 'submit_tweet', :onclick => "window.location.reload();" %></div>
     <div id="count" class="span-1 end">160</div>
   </div>
 <% end %>
